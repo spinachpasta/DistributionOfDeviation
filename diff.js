@@ -23,7 +23,10 @@ function generateData(n){
         for(let m=0;m<num;m++){
             var v=randn_bm();
             a.push(randn_bm());
+            
+            //divs.push(v);
         }
+        //divs.push(randn_bm());
         for(let m=0;m<num;m++){
             avg+=a[m]/num;
         }
@@ -34,7 +37,7 @@ function generateData(n){
         var diff=divs[i]-allave;
         spread+=diff*diff/samples;
     }
-    
+
     return divs;
 }
 
@@ -44,17 +47,27 @@ function showData(n){
     var trace = {
         x: datas,
         type: 'histogram',
+        marker: {
+            color: '#faa'
+        },
+        xbins: {
+            size: 0.01
+        }
     };
+        var layout = {
+            xaxis: {range: [-2.5, 2.5]}
+        };
     var data = [trace];
-    
+
     var title=document.createElement("h1");
-    title.innerHTML=n+"spread:"+spread;
+    title.innerHTML="samples:"+n;
     document.body.appendChild(title);
-    
+
     var elem=document.createElement("div");
     elem.id="aaa"+n;
     document.body.appendChild(elem);
-    Plotly.newPlot("aaa"+n, data);
+    Plotly.newPlot("aaa"+n, data,layout);
+    //Plotly.newPlot("aaa"+n, data);
 }
 
 showData(5);

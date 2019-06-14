@@ -63,9 +63,7 @@ function showData(n){
                 color: '#faa'
             },
             xbins: {
-                end: 5.2, 
-                size: 0.01, 
-                start: 0
+                size: 0.01
             }
         };
         var layout = {
@@ -78,7 +76,7 @@ function showData(n){
         document.body.appendChild(title);
 
         var subtitle=document.createElement("div");
-        subtitle.innerHTML="stdEv:"+stdEv(datas)+",Average:"+Average(datas);
+        subtitle.innerHTML="Standard deviation:"+stdEv(datas)+",Average:"+Average(datas);
         document.body.appendChild(subtitle);
         
         
