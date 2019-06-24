@@ -11,6 +11,7 @@ var arr10=[];
 var div10=[];
 var samples=10000;
 var spread=0;
+
 function generateData(n){
     var divs=[];
     var allave=0;
