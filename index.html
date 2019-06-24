@@ -1,8 +1,22 @@
 <html>
-<body>
-<a href="stdev.html">standard deviation</a><br>
-<a href="diff.html">average</a><br>
-<a href="averageOfSquared.html">average of squared values</a><br>
-<a href="stdev2.html">average of standard deviation vs number of samples</a>
-</body>
+    <body>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <h1>Histograms</h1>
+        <h3>{(value) - (average of each sample)}^2</h3>
+        <a href="stdev.html">standard deviation (squared spread)</a><br>
+        <a href="deviation.html">spread</a><br>
+        <a href="stdev2.html">average of standard deviation vs number of samples</a>
+        
+        
+        <br><br>
+        <h3>average</h3>
+        <a href="diff.html">average</a><br>
+        <a href="averageOfSquared.html">average of squared values</a><br>
+        <h1>data vs N</h1>
+        <button onclick="showData()">calculate</button>
+        <input type="range" id="range" min="0" max="3" value="0" />
+        <div id="plotZone"></div>
+        average(µ):<span id="average"></span>
+        <script src="compareAll.js"></script>
+    </body>
 </html>
