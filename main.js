@@ -42,15 +42,39 @@ function showData(n){
         type: 'histogram',
     };
     var data = [trace];
-    
     var title=document.createElement("h1");
     title.innerHTML=n;
     document.body.appendChild(title);
-    
+    var subtitle=document.createElement("p");
+    subtitle.innerHTML="standard deviation:"+stdEv(datas)+"average:"+Average(datas);
+    document.body.appendChild(subtitle);
     var elem=document.createElement("div");
     elem.id="aaa"+n;
     document.body.appendChild(elem);
-    Plotly.newPlot("aaa"+n, data);
+        var layout = {
+            xaxis: {range: [0, 2.5]}
+        };
+    Plotly.newPlot("aaa"+n, data,layout);
+}
+
+function stdEv(arr){
+    var avg=0;
+    for(let i=0;i<arr.length;i++){
+        avg+=arr[i]/arr.length;
+    }
+    var spread=0;
+    for(let i=0;i<arr.length;i++){
+        let diff=arr[i]-avg;
+        spread+=diff*diff/(arr.length-1);
+    }
+    return Math.sqrt(spread);
+}
+function Average(arr){
+    var avg=0;
+    for(let i=0;i<arr.length;i++){
+        avg+=arr[i]/arr.length;
+    }
+    return avg;
 }
 
 showData(5);
