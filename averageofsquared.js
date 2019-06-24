@@ -23,13 +23,9 @@ function generateData(n,k){
             a.push(randn_bm());
         }
         for(let m=0;m<num;m++){
-            avg+=a[m]/num;
+            avg+=a[m]*a[m]/num;
         }
-        for(let m=0;m<num;m++){
-            var diff=a[m]-avg;
-            div+=diff*diff/(num-k);
-        }
-        divs.push(Math.sqrt(div));
+        divs.push(avg);
     }
     return divs;
 }
@@ -67,12 +63,7 @@ function showData(n){
             }
         };
         var layout = {
-            xaxis: {
-                title: {
-                    text: 'standard deviation'
-                },
-                range: [0, 2.5]
-            }
+            xaxis: {range: [0, 5]}
         };
         var data = [trace];
 
@@ -83,8 +74,8 @@ function showData(n){
         var subtitle=document.createElement("div");
         subtitle.innerHTML="Standard deviation:"+stdEv(datas)+",Average:"+Average(datas);
         document.body.appendChild(subtitle);
-
-
+        
+        
         var elem=document.createElement("div");
         elem.id="aaa"+n+"a"+l;
         document.body.appendChild(elem);

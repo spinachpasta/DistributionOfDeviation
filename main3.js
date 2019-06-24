@@ -52,7 +52,40 @@ function Average(arr){
     }
     return avg;
 }
-function showData(n){
+function showData(){
+    var avgs=[];
+    var oneto50=[];
+    for(var i=1;i<=50;i++){
+        var datas=generateData(i,1);
+        avgs.push(Average(datas));
+        oneto50.push(i);
+    }
+    var trace1 = {
+        x: oneto50,
+        y: avgs,
+        mode: 'markers',
+        type: 'scatter'
+    };
+    var layout={
+        xaxis: {
+        title: {
+            text: 'number of samples'
+        }
+        },
+        yaxis: {
+        title: {
+            text: 'average of standard deviation'
+        }
+        }
+    }
+    var data = [trace1];
+
+    var elem=document.createElement("div");
+    elem.id="aaa";
+    document.body.appendChild(elem);
+    Plotly.newPlot(elem.id, data,layout);
+
+    /*
     for(var l=1;l<2;l++){
         var datas=generateData(n,l);
 
@@ -67,12 +100,7 @@ function showData(n){
             }
         };
         var layout = {
-            xaxis: {
-                title: {
-                    text: 'standard deviation'
-                },
-                range: [0, 2.5]
-            }
+            xaxis: {range: [0, 2.5]}
         };
         var data = [trace];
 
@@ -89,7 +117,7 @@ function showData(n){
         elem.id="aaa"+n+"a"+l;
         document.body.appendChild(elem);
         Plotly.newPlot(elem.id, data,layout);
-    }
+    }*/
 }
 function addPageBreak(){
     var elem=document.createElement("div");
@@ -98,14 +126,4 @@ function addPageBreak(){
 }
 //showData(1);
 
-showData(2);
-showData(3);
-addPageBreak();
-showData(4);
-showData(5);
-addPageBreak();
-showData(10);
-showData(20);
-addPageBreak();
-showData(50);
-showData(100);
+showData();
