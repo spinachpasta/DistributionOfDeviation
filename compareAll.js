@@ -61,10 +61,10 @@ function showData(){
     for(var i=2;i<51;i++){
         oneto50.push(i);
         var res=generateData(i);
-        divs.push(Average(res.divs));
-        stdevs.push(Average(res.stdevs));
-        sqaredaverages.push(Average(res.sqaredaverages));
-        sqrtsqaredaverages.push(Average(res.sqrtsqaredaverages));
+        divs.push(Spread(res.divs));
+        stdevs.push(Spread(res.stdevs));
+        sqaredaverages.push(Spread(res.sqaredaverages));
+        sqrtsqaredaverages.push(Spread(res.sqrtsqaredaverages));
     }
 
     var traceSpread = {
@@ -115,6 +115,18 @@ function stdEv(arr){
         spread+=diff*diff/(arr.length-1);
     }
     return Math.sqrt(spread);
+}
+function Spread(arr){
+    var avg=0;
+    for(let i=0;i<arr.length;i++){
+        avg+=arr[i]/arr.length;
+    }
+    var spread=0;
+    for(let i=0;i<arr.length;i++){
+        let diff=arr[i]-avg;
+        spread+=diff*diff/(arr.length-1);
+    }
+    return spread;
 }
 function Average(arr){
     var avg=0;
