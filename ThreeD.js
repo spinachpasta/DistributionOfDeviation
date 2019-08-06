@@ -85,8 +85,9 @@ var model=new THREE.Object3D();
 const origin=new Overlay(new THREE.Vector3(-lego.length/2,0,-size/2),"");
 const NLabels=[];
 const RhoLabels=[];
-const Rhoaxis=new Overlay(new THREE.Vector3(-lego.length/2,0,size/2+5),"ρ");
-const Naxis=new Overlay(new THREE.Vector3(lego.length/2+5,0,-size/2),"N");
+const Rhoaxis=
+      new Overlay(new THREE.Vector3(-lego.length/2,0,size/2+15),"ρ");
+const Naxis=new Overlay(new THREE.Vector3(lego.length/2+15,0,-size/2),"N");
 const point=new THREE.PointLight({color:0xf0f0f0});
 window.onload=function(){
     renderer.setSize(width, height);
@@ -133,10 +134,10 @@ window.onload=function(){
     camera.position.y = 30;
     camera.lookAt(new THREE.Vector3(0,0,0));
     
-    document.body.appendChild(origin.element);
-    /*
+    //document.body.appendChild(origin.element);
+    
     document.body.appendChild(Naxis.element);
-    document.body.appendChild(Rhoaxis.element);*/
+    document.body.appendChild(Rhoaxis.element);
     for(let i=1;i<=10;i++){
         const label=new Overlay(
             new THREE.Vector3(-lego.length/2,0,i*10-size/2),i*0.25+"");
