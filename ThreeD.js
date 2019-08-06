@@ -1,5 +1,5 @@
 let scene=new THREE.Scene();
-let camera=new THREE.OrthographicCamera();
+let camera=new THREE.PerspectiveCamera();
 const cubes=[];
 const renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -187,10 +187,13 @@ function timer(){
     camera.position.set(vector.x,vector.y,vector.z);
     camera.lookAt(0,0,0);
     point.position.set(vector.x,vector.y,vector.z);
+    /*
     camera.left=-zoom;
     camera.right=zoom;
     camera.top=zoom;
     camera.bottom=-zoom;
+    camera.updateProjectionMatrix();*/
+    camera.fov=Math.atan(zoom/40)*180/Math.PI;
     camera.updateProjectionMatrix();
     
     renderer.render(scene,camera);
