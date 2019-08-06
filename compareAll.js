@@ -36,7 +36,7 @@ function generateData(n){
         }
         for(let m=0;m<num;m++){
             avg+=a[m]/num;
-            sqavg+=(a[m]-center)*(a[m]-center)/num;
+            sqavg+=(a[m]-center)*(a[m]-center)/(num);
             //sqavg+=a[m]*a[m]/num;
         }
         for(let m=0;m<num;m++){
@@ -58,13 +58,15 @@ function showData(){
     var sqaredaverages=[];
     var sqrtsqaredaverages=[];
     var oneto50=[];
+    var diff=[];
     for(var i=2;i<51;i++){
         oneto50.push(i);
         var res=generateData(i);
-        divs.push(Spread(res.divs));
-        stdevs.push(Spread(res.stdevs));
-        sqaredaverages.push(Spread(res.sqaredaverages));
-        sqrtsqaredaverages.push(Spread(res.sqrtsqaredaverages));
+        divs.push(Average(res.divs));
+        stdevs.push(Average(res.stdevs));
+        sqaredaverages.push(Average(res.sqaredaverages));
+        sqrtsqaredaverages.push(Average(res.sqrtsqaredaverages));
+        diff.push(Average(res.sqrtsqaredaverages)-Average(res.stdevs));
     }
 
     var traceSpread = {
@@ -91,10 +93,16 @@ function showData(){
         type: 'scatter',
         name: "square root of √ ∑{(value)-(µ)}^2"
     };
+    var tracediff = {
+        y: diff,
+        x:oneto50,
+        type: 'scatter',
+        name: "√ ∑{(value)-(µ)}^2 - standard deviation"
+    };
     var layout={
 
     };
-    data=[traceSpread,traceStdeves,traceSquared,traceRoot];
+    data=[traceSpread,traceStdeves,traceSquared,traceRoot,tracediff];
     var div=document.createElement("div");
 
     var layout = {
@@ -115,18 +123,6 @@ function stdEv(arr){
         spread+=diff*diff/(arr.length-1);
     }
     return Math.sqrt(spread);
-}
-function Spread(arr){
-    var avg=0;
-    for(let i=0;i<arr.length;i++){
-        avg+=arr[i]/arr.length;
-    }
-    var spread=0;
-    for(let i=0;i<arr.length;i++){
-        let diff=arr[i]-avg;
-        spread+=diff*diff/(arr.length-1);
-    }
-    return spread;
 }
 function Average(arr){
     var avg=0;
